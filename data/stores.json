@@ -1,0 +1,52 @@
+[
+  {
+    "_id": "store-riverside",
+    "name": "Riverside Auto",
+    "city": "Springfield",
+    "state": "IL",
+    "phone": "+1 555 0101",
+    "hours": "Mon to Fri 9:00 to 19:00, Sat 9:00 to 17:00",
+    "rating": 4.7,
+    "assistant_enabled": true
+  },
+  {
+    "_id": "store-lakeside",
+    "name": "Lakeside Motors",
+    "city": "Madison",
+    "state": "WI",
+    "phone": "+1 555 0102",
+    "hours": "Mon to Sat 8:30 to 18:30",
+    "rating": 4.5,
+    "assistant_enabled": true
+  },
+  {
+    "_id": "store-summit",
+    "name": "Summit Car Center",
+    "city": "Denver",
+    "state": "CO",
+    "phone": "+1 555 0103",
+    "hours": "Mon to Fri 9:00 to 20:00, Sat 10:00 to 16:00",
+    "rating": 4.3,
+    "assistant_enabled": true
+  },
+  {
+    "_id": "store-harbor",
+    "name": "Harbor City Cars",
+    "city": "Tacoma",
+    "state": "WA",
+    "phone": "+1 555 0104",
+    "hours": "Mon to Sat 9:00 to 18:00",
+    "rating": 4.6,
+    "assistant_enabled": false
+  },
+  {
+    "_id": "store-prairie",
+    "name": "Prairie Road Autos",
+    "city": "Omaha",
+    "state": "NE",
+    "phone": "+1 555 0105",
+    "hours": "Mon to Fri 9:00 to 19:00, Sat 9:00 to 15:00",
+    "rating": 4.4,
+    "assistant_enabled": true
+  }
+]

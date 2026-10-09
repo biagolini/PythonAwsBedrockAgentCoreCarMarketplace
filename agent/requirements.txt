@@ -1,0 +1,11 @@
+# Same versions verified in the other agents of this series. Bump deliberately.
+bedrock-agentcore==1.22.0
+langgraph==1.2.11
+langchain-aws==1.7.5
+langchain-mcp-adapters==0.3.2
+mcp-proxy-for-aws==1.6.5
+mcp>=1.24.0,<2.0.0
+boto3>=1.40.0
+# Observability: ADOT auto instrumentation plus LangChain/LangGraph spans.
+aws-opentelemetry-distro==0.19.0
+opentelemetry-instrumentation-langchain==0.62.3

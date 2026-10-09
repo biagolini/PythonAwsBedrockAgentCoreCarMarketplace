@@ -1,0 +1,18 @@
+[
+  {
+    "name": "search_cars",
+    "description": "Search the dealership inventory for cars that are available now. Use it whenever the buyer asks what cars are in stock, for example by body type, price range, or make. Returns a page of cars sorted by price, with the store that sells each one. When the buyer asks for more results (for example 'show me more'), call search_cars again with the exact same filters and set next_token to the value returned in the previous response. When the response has next_token set to null, there are no more cars for that search.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "body_type": { "type": "string", "description": "One of: SUV, Sedan, Pickup, Wagon" },
+        "min_price": { "type": "number", "description": "Minimum price in US dollars" },
+        "max_price": { "type": "number", "description": "Maximum price in US dollars" },
+        "make": { "type": "string", "description": "Brand, for example Toyota or Honda" },
+        "limit": { "type": "integer", "description": "Number of cars per page, 1 to 20, default 5" },
+        "next_token": { "type": "string", "description": "Opaque pagination cursor. Omit it on the first page. To get the next page, pass the next_token returned by the previous call, keeping all other filters identical." }
+      },
+      "required": []
+    }
+  }
+]

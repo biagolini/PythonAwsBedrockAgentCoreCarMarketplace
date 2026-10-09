@@ -1,0 +1,48 @@
+{
+  "github.copilot.chat.commitMessageGeneration.instructions": [
+    {
+      "text": "Write a single concise commit subject line in imperative mood, max 72 characters. Always start with a Conventional Commits type prefix followed by a colon and a space. Allowed types: feat, fix, docs, style, refactor, chore, revert. This repository is PythonAwsBedrockAgentCoreCarMarketplace: a demo of a car marketplace AI sales assistant on Amazon Bedrock AgentCore, with a LangGraph agent on AgentCore Runtime, a tool exposed through AgentCore Gateway backed by an AWS Lambda that reads MongoDB Atlas, sample data, a GitHub Actions pipeline that pushes the agent image to Amazon ECR, and a step-by-step tutorial. Add a scope in parentheses identifying the affected part of THIS repo, chosen from: agent (the LangGraph agent container under agent/), lambda (the search_cars Lambda tool under lambda/), data (the sample stores/cars data and the seed script under data/), scripts (helper scripts under scripts/ such as build_and_push.sh and invoke_runtime.py), docs (the tutorial and other documentation under docs/), ci (the GitHub Actions workflow under .github/workflows), repo (cross-cutting repository config such as .gitignore, .vscode, README). When a change spans more than one scope, join them with a plus sign, e.g. fix(agent+lambda):. Do not add a body, bullet points, or explanatory paragraphs. Do not add a Co-Authored-By footer or any trailer. Summarize only the essence of the change. Only add a short body if the change is genuinely complex and cannot be conveyed in the subject alone."
+    }
+  ],
+  "files.associations": {
+    "Dockerfile*": "dockerfile",
+    "*.env": "dotenv",
+    "requirements*.txt": "pip-requirements"
+  },
+  "[python]": {
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "editor.rulers": [100]
+  },
+  "[json]": {
+    "editor.formatOnSave": true,
+    "editor.tabSize": 2
+  },
+  "[yaml]": {
+    "editor.formatOnSave": true,
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true
+  },
+  "[shellscript]": {
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true
+  },
+  "[markdown]": {
+    "editor.tabSize": 2,
+    "files.trimTrailingWhitespace": false
+  },
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "search.exclude": {
+    "**/__pycache__": true,
+    "**/*.pyc": true,
+    "**/.venv": true,
+    "lambda/dist": true,
+    "lambda/*/build": true
+  },
+  "files.watcherExclude": {
+    "**/__pycache__/**": true,
+    "**/.venv/**": true,
+    "lambda/dist/**": true
+  }
+}

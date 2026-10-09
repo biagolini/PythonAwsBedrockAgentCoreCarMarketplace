@@ -1,0 +1,66 @@
+# Builds the agent image for linux/arm64 (required by AgentCore Runtime) and
+# pushes it to Amazon ECR tagged `latest`, creating the repository on the first
+# run.
+#
+# Authentication: GitHub OIDC, no long lived keys. Repository secrets:
+#   AWS_ROLE_ARN  IAM role trusted by token.actions.githubusercontent.com
+#   AWS_REGION    for example us-east-1
+name: Deploy agent to ECR
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "agent/**"
+      - ".github/workflows/deploy-agents.yml"
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    env:
+      REPOSITORY: agentcore/dealership-assistant-agent
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials (OIDC)
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Log in to Amazon ECR
+        id: ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Ensure the ECR repository exists
+        run: |
+          aws ecr describe-repositories --repository-names "$REPOSITORY" >/dev/null 2>&1 \
+            || aws ecr create-repository --repository-name "$REPOSITORY" >/dev/null
+
+      - name: Set up QEMU (arm64 emulation)
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build and push (linux/arm64)
+        uses: docker/build-push-action@v6
+        with:
+          context: agent
+          platforms: linux/arm64
+          push: true
+          provenance: false
+          sbom: false
+          tags: |
+            ${{ steps.ecr.outputs.registry }}/${{ env.REPOSITORY }}:latest
+
+      - name: Summary
+        run: |
+          echo "### ${REPOSITORY}:latest" >> "$GITHUB_STEP_SUMMARY"
+          echo "\`${{ steps.ecr.outputs.registry }}/${REPOSITORY}:latest\`" >> "$GITHUB_STEP_SUMMARY"
